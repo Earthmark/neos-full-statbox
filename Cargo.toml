@@ -5,3 +5,7 @@ edition = "2021"
 
 [dependencies]
 bevy = "*"
+serde = "*"
+serde_json = "*"
+chrono = { version = "*", features = ["serde"] }
+thiserror = "*"
