@@ -5,7 +5,12 @@ edition = "2021"
 
 [dependencies]
 bevy = "*"
-serde = "*"
+serde = { version = "*", features = ["rc"] }
 serde_json = "*"
 chrono = { version = "*", features = ["serde"] }
 thiserror = "*"
+regex = "*"
+lazy_static = "*"
+bson = "*"
+lzma-rs = "0.3.0"
+serde_stacker = "0.1.8"

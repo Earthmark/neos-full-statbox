@@ -1,12 +1,12 @@
-use std::{borrow::Cow, collections::BTreeSet};
+use std::{collections::BTreeSet};
 
-use super::CowStr;
+use super::RcStr;
 
 pub trait Internable {
     fn intern(self, i: &mut Interner) -> Self;
 }
 
-impl Internable for CowStr {
+impl Internable for RcStr {
     fn intern(self, i: &mut Interner) -> Self {
         i.intern(self)
     }
@@ -26,11 +26,11 @@ impl<T: Internable> Internable for Vec<T> {
 
 #[derive(Default, Clone)]
 pub struct Interner {
-    intern_cache: BTreeSet<Cow<'static, str>>,
+    intern_cache: BTreeSet<RcStr>,
 }
 
 impl Interner {
-    fn intern(&mut self, k: Cow<'static, str>) -> Cow<'static, str> {
+    fn intern(&mut self, k: RcStr) -> RcStr {
         self.intern_cache
             .get(&k)
             .map(Clone::clone)
